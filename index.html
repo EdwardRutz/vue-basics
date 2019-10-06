@@ -1,17 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Vue Basics</title>
-<!--  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+  <script src="libraries/vue.js"></script>
+  <!--  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 </head>
 <body>
   <h1>Vue Basics</h1>
+  <!-- The Vue instance is created in /app.js -->
+  <!-- The instance is inserted into the div element -->
   <div id="app">
+    <!-- Using data properties   -->
+    <!-- Pass in title data -->
     <h2>{{ title }}</h2>
+    <!-- Pass a variable to a method -->
     <p>{{ greet('morning') }}</p>
+
+    <!-- Data binding the url -->
+    <!-- v-bind is known as a directive and is recognized by Vue -->
+    <a v-bind:href= "url">YouTube</a>
+
+    <div v-bind:class="classes">Classes from the instance.</div>
+    <div>
+      <input type="text" v-bind:value="name">
+    </div>
+
+    <!--  Using Events  -->
+    <p>Hourly Wage: $ {{ wage }}</p>
+    <button v-on:click="changeWage(1)">Increase wage by $1</button>
+    <button v-on:click="changeWage(-1)">Decrease wage by $1</button>
+    <div>
+      <p>Double Click to add More</p>
+      <button v-on:dblclick="changeWage(5)">Increase wage by $5</button>
+      <button v-on:dblclick="changeWage(-5)">Decrease wage by $5</button>
+    </div>
+
+    <!-- The Event Object -->
+    <div>
+      <p>Click to create an Event Object, see console</p>
+      <button v-on:click="logEvent">Log Event Info</button>
+    </div>
+    <div class="canvas" @mousemove="logCoords">
+      {{ coords.x }}, {{ coords.y }}
+    </div>
   </div>
 
+  <style>
+    .one {
+      color: green;
+    }
+    .two {
+      text-decoration: line-through;
+    }
+    .canvas {
+      width: 300px;
+      height: 300px;
+      margin-top: 20px;
+      background: #ddd;
+    }
+  </style>
   <script src="app.js"></script>
 </body>
 </html>
